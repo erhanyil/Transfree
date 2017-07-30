@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <title>Transfree</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+      <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="font/font-awesome-4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="css/circle.css">
+      <link rel="stylesheet" href="css/style.css">
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body onload="setInterval(function(){ plusDivs(+1); }, 50000);">
+      <div class="mySlides">
+         <div id="ssA"></div>
+      </div>
+      <div class="mySlides">
+         <div id="ssB"></div>
+      </div>
+      <div class="mySlides">
+         <div id="ssC"></div>
+      </div>
+      <div class="mySlides">
+         <div id="ssD"></div>
+      </div>
+      <div id="mySidenav" class="sidenav">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>
+         <a style="margin-bottom:0px;color:#111;text-align:center;" href=""><i class="fa fa-cloud-upload" aria-hidden="true" style="color:#2196f3"></i>TransFree</a>
+         <hr style="margin:0px">
+         <div>
+            <p style="padding:15px;word-wrap:break-word;">Kenan Burak Demirci Graduation Project</p>
+         </div>
+      </div>
+      <div class="navbar navbar-default navbar-fixed-bottom">
+         <div class="container">
+            <div class="navbar-header">
+               <a onclick="openSearchForm()" class="navbar-toggle collapsed" style="cursor:pointer;border:1px #ccc solid;border-bottom-left-radius:10px;border-top-left-radius:10px;color:#000;background-color:#fff;margin:0">
+                  <i class="fa fa-search" aria-hidden="true" style=""></i>
+                  <p id="searchText" style="margin-left:5px;float:right;display:none;"><strong>Search</strong></p>
+               </a>
+               <a style="position: fixed;color:#fff;left: 20px;" href="http://stdiosoft.com/transfree/" class="navbar-brand">
+                  <!--<i class="fa fa-cloud-upload" aria-hidden="true" style="color:#fff;"></i>-->
+                  <img src="img/cloud-usploasdad-2.png" width="50px"  style="margin-top:-25px">
+               </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+               <ul class="nav navbar-nav navbar-right" style="position: fixed;right: 20px;">
+                  <li style="float:left;margin-left:10px" onmousemove="getElementById('searchText').style.display='block'" onmouseout="getElementById('searchText').style.display='none'">
+                     <a onclick="openSearchForm()" style="display:none;cursor:pointer;border:1px #ccc solid;border-bottom-left-radius:10px;border-top-left-radius:10px;color:#000;background-color:#fff">
+                        <i class="fa fa-search" aria-hidden="true" style=""></i>
+                        <p id="searchText" style="margin-left:5px;float:right;display:none;"><strong>Search</strong></p>
+                     </a>
+                  </li>
+                  <li style="float:right;margin-right:10px"><a  onclick="openNav()" style="display:none;border:1px #ccc solid;border-left:none;border-bottom-right-radius:10px;border-top-right-radius:10px;color:#000;background-color:#fff" href="#" target="_blank"><strong>Login</strong></a></li>
+                  <li><a  onclick="openNav()" style="border:1px #ccc solid;background-color:#fff;border-radius: 10px;" href="#" target="_blank"><strong>About Us</strong></a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="page-header" id="banner">
+            <div class="modal" id="uploadPanel" style="display:block;margin-top:-60px">
+               <div >
+                  <div class="modal-dialog" style="position:fixed;left: 20px;">
+                     <div id="uploadForm" class="modal-content" style="width: 280px;border-radius:10px;">
+                        <div class="modal-header" id="uploadFileHeader" style="padding:40px 0px 40px 15px;text-align:center;cursor:pointer;margin-top:22px;border-bottom:1px #ddd solid;"  onclick="selectFile()">
+                           <button onclick="selectFile()" id="selectFileButton" style="float:left;width:50px;height:50px;border-radius:100%;" class="btn btn-primary"><i class="fa fa-plus" style="font-size:20px;padding-top:7px" aria-hidden="true"></i></button>
+                           <div style="float:left;margin:9px; word-wrap: break-word;">
+                              <p id="addYour" style="font-size:20px;color:#000;margin-top:-10px">Add your file</p>
+                              <p id="fileSizeAlert" style="font-size:15px;margin-top:-30px;color:#ccc">Upload up to 2 GB</p>
+                              <p id="fileSizeAlertt" style="display:none;font-size:15px;margin-top:-30px;color:red"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="font-size:20px"></i> Upload max 2 GB</p>
+                           </div>
+                        </div>
+                        <div id="fileNamePanel" style="display:none;margin-bottom:-5px;border-bottom:1px #ccc solid" class="alert alert-dismissible">
+                           <a type="button" class="close" style="color:#e51c23" onclick="removeChooseFile()">&times;</a>
+                           <p style="color:#000;word-wrap: break-word;width:209px" id="fileName"></p>
+                           <span id="fileSize" style="color:white" class="badge"></span>
+                        </div>
+                        <div class="modal-body" style="">
+                           <form class="form-horizontal" id="upload_form" enctype="multipart/form-data" method="post">
+                              <input type="file" style="display:none;visibility:hidden;" name="file1" id="file1">
+                              <div class="form-group" style="margin-top:4px">
+                                 <div class="col-lg-12">
+                                    <input class="form-control"  id="yEmail" placeholder="Your Email" type="text">
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <div class="col-lg-12">
+                                    <div class="input-group">
+                                       <input class="form-control"  id="toEmail" placeholder="Email To" type="text">
+                                       <span class="input-group-btn">
+                                       <a class="btn btn-default" id="addToEmail" onclick="addToEmail()" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                                       </span>
+                                    </div>
+                                    <div id="maxtoEmail" style="display:none;padding:0;margin-top:5px;margin-bottom:0px" class="alert alert-dismissible alert-danger">
+                                       <p style="text-align:center">Maximum 5 Email !</p>
+                                    </div>
+                                    <ul class="list-group" id="toEmailList">			 
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <div class="col-lg-12">
+                                    <textarea class="form-control" rows="3" id="message" style="overflow:hidden; resize: none;" placeholder="Message"></textarea>
+                                 </div>
+                              </div>
+                              <div class="form-group" id="passwordInput" style="display:none;margin-top:10px">
+                                 <div class="col-lg-12">
+                                    <input class="form-control"  id="password" placeholder="Password" type="password">
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                        <div class="modal-footer" style="border-top:1px #ccc solid;margin-top:-21px">
+                           <label class="switch"  style="float:left">
+                              <input type="checkbox" id="passRadio" onclick="passwordRadio()">
+                              <div class="slider round">
+                                 <i style="float:right;margin:5px;margin-right:8px;font-size:25px;" class="fa fa-lock" aria-hidden="true"></i>
+                                 <i style="float:right;margin-top:4px;margin-right:3px;font-size:24px;" class="fa fa-unlock" aria-hidden="true"></i>
+                              </div>
+                           </label>
+                           <div class="form-group" style="text-align:right;float:right;margin:-10px;margin-top:0px;">
+                              <div class="col-lg-12">
+                                 <button type="button" onclick="uploadFile()" class="btn btn-primary">Transfer</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div id="progressPanel" class="modal-content" style="display:none;border-radius:10px;text-align:center;">
+                        <div class="modal-header" style="margin-top:10px;">
+                           <div id="successful" class="page" style="width: 45%;margin: 0 auto;">
+                              <div class="clearfix">
+                                 <div id="progressBar" class="c100 p0">
+                                    <span id="progressBarPercent">0%</span>
+                                    <div class="slice">
+                                       <div class="bar"></div>
+                                       <div class="fill"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="wrong" style="display:none">
+                              <i class="fa fa-frown-o" aria-hidden="true" style="font-size:120px;color:#e51c23"></i>
+                           </div>
+                           <p style="font-size:18px" id="status"></p>
+                           <p id="loaded_n_total"></p>
+                           <div class="form-group" style="text-align:center;margin:-5px;margin-top:10px;">
+                              <div class="col-lg-12">
+                                 <button type="button" onclick="cancel()" id="cancel" class="btn btn-default">Cancel</button>
+                                 <button type="button" style="display:none;" id="goBack" onclick="goBack()" class="btn btn-default">Done</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal" id="searchPanel" style=";display:none;margin-top:-50px">
+               <div class="modal-dialog"  style="width:400px;position:relative">
+                  <div class="modal-content" style="border-radius:10px;">
+                     <div class="modal-header">
+                        <div class="form-group" style="margin-top:5px">
+                           <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                              <input class="form-control" id="searchInput" type="text" placeholder="Search File by Email">
+                              <span class="input-group-btn">
+                              <button class="btn btn-default" onclick="search()" type="button">Search</button>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                     <div id="searchEmailContent">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="js/custom.js"></script>
+      <script src="js/tkon.js"></script>
+   </body>
+</html>
+
